@@ -5,3 +5,57 @@
 body {
   margin: 0;
 }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #182418, #2f4a2f, #4f6b3f);
+  color: white;
+}
+
+.navbar-logo {
+  margin: 0;
+}
+
+.navbar-categories {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.greeting {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.cart-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 24px;
+}
+
+.cart-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+
+  border-radius: 50%;
+  background-color: #d8a84e;
+  color: #182418;
+
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -1,10 +1,12 @@
 
-import NavBar from './components/NavBar/NavBar'
+import NavBar from "./components/NavBar/NavBar"
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 
 function App() {
   return (
     <>
-      <h1>Bushcraft is life!</h1>
+      <NavBar />
+      <ItemListContainer greeting="Bienvenido a Bushcraft is life!" />
     </>
   )
 }

@@ -28,3 +28,9 @@ npm run dev
 ```
 
 Luego abrir en el navegador la dirección local indicada por Vite.
+
+## Componentes
+
+- **NavBar:** barra de navegación principal con el nombre del e-commerce, categorías de productos y acceso al carrito.
+- **CartWidget:** componente visual del carrito de compras con una cantidad de productos temporalmente hardcodeada.
+- **ItemListContainer:** contenedor principal que recibe y muestra un mensaje de bienvenida mediante props.
