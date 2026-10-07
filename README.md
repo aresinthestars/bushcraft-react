@@ -44,3 +44,13 @@ La función `getProducts` devuelve una Promise que se resuelve luego de 2 segund
 `ItemListContainer` realiza la carga de productos mediante `useEffect` y guarda los resultados en un estado utilizando `useState`.
 
 Luego, `ItemList` recorre los productos con `.map()` y renderiza un componente `Item` por cada producto utilizando su `id` como key única.
+
+## Detalle de producto
+
+Se incorporó una vista de detalle individual mediante `ItemDetailContainer` e `ItemDetail`.
+
+La función `getProductById` busca un producto por su identificador y simula una consulta asincrónica mediante una Promise y `setTimeout`.
+
+`ItemDetailContainer` administra la carga y el estado del producto, mientras que `ItemDetail` se encarga de mostrar su información completa.
+
+También se incorporó `ItemCount`, que permite seleccionar una cantidad respetando el stock disponible y evitando valores negativos.
