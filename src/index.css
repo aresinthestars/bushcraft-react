@@ -127,3 +127,20 @@ body {
   text-align: center;
   font-weight: bold;
 }
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  margin-top: 40px;
+  background-color: #182418;
+  color: white;
+}

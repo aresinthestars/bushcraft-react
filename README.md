@@ -54,3 +54,18 @@ La función `getProductById` busca un producto por su identificador y simula una
 `ItemDetailContainer` administra la carga y el estado del producto, mientras que `ItemDetail` se encarga de mostrar su información completa.
 
 También se incorporó `ItemCount`, que permite seleccionar una cantidad respetando el stock disponible y evitando valores negativos.
+
+## Navegación con React Router
+
+Se incorporó `react-router-dom` para gestionar la navegación del e-commerce como una SPA.
+
+Las rutas principales son:
+
+- `/` muestra el catálogo completo.
+- `/category/:id` filtra los productos según la categoría seleccionada.
+- `/item/:id` muestra el detalle dinámico de un producto.
+- `*` muestra una página 404 para rutas inexistentes.
+
+El proyecto utiliza `NavLink` y `Link` para navegar sin recargar la página.
+
+También se incorporó un `Layout` compartido con `NavBar`, `CartWidget`, `Footer` y `Outlet`, permitiendo mantener la estructura principal visible entre rutas.
