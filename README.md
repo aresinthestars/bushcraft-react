@@ -69,3 +69,19 @@ Las rutas principales son:
 El proyecto utiliza `NavLink` y `Link` para navegar sin recargar la página.
 
 También se incorporó un `Layout` compartido con `NavBar`, `CartWidget`, `Footer` y `Outlet`, permitiendo mantener la estructura principal visible entre rutas.
+
+## Carrito de compras
+
+Se incorporó un carrito de compras global utilizando Context API.
+
+El carrito permite:
+
+- Agregar productos y cantidades desde el detalle.
+- Sumar cantidades sin duplicar productos.
+- Eliminar productos individualmente.
+- Vaciar el carrito completo.
+- Calcular subtotales y total de compra.
+- Mostrar la cantidad total de unidades en el CartWidget.
+- Navegar a una vista dedicada mediante la ruta `/cart`.
+
+El estado global se administra mediante `CartContext` y `CartProvider`, utilizando actualizaciones inmutables con métodos como `map`, `filter`, `reduce` y spread operators.
