@@ -1,8 +1,11 @@
 
 import CartWidget from "../CartWidget/CartWidget"
 import { NavLink } from "react-router-dom"
+import { useAuth } from "../../context/AuthContext"
 
 function NavBar() {
+  const { user, logout } = useAuth()
+
   return (
     <nav className="navbar">
       <h2 className="navbar-logo">
@@ -16,6 +19,20 @@ function NavBar() {
         <li><NavLink to="/category/iluminacion">Iluminación</NavLink></li>
         <li><NavLink to="/category/primeros-auxilios">Primeros auxilios</NavLink></li>
       </ul>
+
+      <div className="navbar-auth">
+        {user ? (
+          <>
+            <span>{user.email}</span>
+            <button onClick={logout}>Cerrar sesión</button>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Registro</NavLink>
+          </>
+        )}
+      </div>
 
       <CartWidget />
     </nav>

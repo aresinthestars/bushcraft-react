@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
 import { useCart } from "../../context/CartContext"
+import { addDoc, collection, serverTimestamp } from "firebase/firestore"
+import { db } from "../../firebase/config"
+import { useAuth } from "../../context/AuthContext"
 
 function Cart() {
   const { cart, removeItem, clear } = useCart()
+
+  const { user } = useAuth()
 
   const total = cart.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -16,6 +21,33 @@ function Cart() {
         <Link to="/">Volver al catálogo</Link>
       </section>
     )
+  }
+
+  const handleCheckout = async () => {
+    if (!user) {
+      alert("Tenés que iniciar sesión para finalizar la compra.")
+      return
+    }
+
+    const order = {
+      buyer: {
+        email: user.email,
+        uid: user.uid
+      },
+      items: cart.map((product) => ({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity
+      })),
+      total,
+      date: serverTimestamp()
+    }
+
+    const orderRef = await addDoc(collection(db, "orders"), order)
+
+    alert(`Compra realizada. ID de orden: ${orderRef.id}`)
+    clear()
   }
 
   return (
@@ -41,7 +73,7 @@ function Cart() {
         Vaciar carrito
       </button>
 
-      <button>
+      <button onClick={handleCheckout}>
         Finalizar compra
       </button>
     </section>

@@ -4,6 +4,8 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer"
 import Layout from "./components/Layout/Layout"
 import Cart from "./components/Cart/Cart"
+import Login from "./components/Login/Login"
+import Register from "./components/Register/Register"
 
 function App() {
 
@@ -31,6 +33,10 @@ function App() {
           />
 
           <Route path="/cart" element={<Cart />} />
+
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
 
           <Route
             path="*"
