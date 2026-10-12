@@ -3,11 +3,29 @@ import { useCart } from "../../context/CartContext"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import { db } from "../../firebase/config"
 import { useAuth } from "../../context/AuthContext"
+import { useState } from "react"
 
 function Cart() {
   const { cart, removeItem, clear } = useCart()
 
   const { user } = useAuth()
+
+  const [buyer, setBuyer] = useState({
+    name: "",
+    lastname: "",
+    phone: "",
+    address: "",
+    city: ""
+  })
+
+  const handleBuyerChange = (event) => {
+    const { name, value } = event.target
+
+    setBuyer({
+      ...buyer,
+      [name]: value
+    })
+  }
 
   const total = cart.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -29,8 +47,20 @@ function Cart() {
       return
     }
 
+    if (
+      !buyer.name ||
+      !buyer.lastname ||
+      !buyer.phone ||
+      !buyer.address ||
+      !buyer.city
+    ) {
+      alert("Completá todos los datos de entrega.")
+      return
+    }
+
     const order = {
       buyer: {
+        ...buyer,
         email: user.email,
         uid: user.uid
       },
@@ -66,6 +96,50 @@ function Cart() {
           </button>
         </div>
       ))}
+
+      <div className="checkout-form">
+        <h3>Datos de entrega</h3>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          value={buyer.name}
+          onChange={handleBuyerChange}
+        />
+
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Apellido"
+          value={buyer.lastname}
+          onChange={handleBuyerChange}
+        />
+
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Teléfono"
+          value={buyer.phone}
+          onChange={handleBuyerChange}
+        />
+
+        <input
+          type="text"
+          name="address"
+          placeholder="Dirección"
+          value={buyer.address}
+          onChange={handleBuyerChange}
+        />
+
+        <input
+          type="text"
+          name="city"
+          placeholder="Ciudad"
+          value={buyer.city}
+          onChange={handleBuyerChange}
+        />
+      </div>
 
       <h3>Total: ${total}</h3>
 
