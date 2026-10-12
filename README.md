@@ -2,12 +2,18 @@
 
 E-commerce de productos de bushcraft, supervivencia y actividades al aire libre, desarrollado como proyecto del curso React JS de Coderhouse.
 
+El proyecto permite navegar por un catálogo, filtrar productos por categoría, acceder al detalle de cada producto, administrar un carrito de compras, registrar e iniciar sesión con usuarios y generar órdenes de compra almacenadas en Firebase.
+
 ## Tecnologías utilizadas
 
 - React
 - Vite
 - JavaScript
 - CSS
+- React Router
+- Context API
+- Firebase Authentication
+- Cloud Firestore
 - Git
 - GitHub
 
@@ -17,71 +23,3 @@ Clonar el repositorio e instalar las dependencias:
 
 ```bash
 npm install
-```
-
-## Ejecución
-
-Para iniciar el proyecto en modo desarrollo:
-
-```bash
-npm run dev
-```
-
-Luego abrir en el navegador la dirección local indicada por Vite.
-
-## Componentes
-
-- **NavBar:** barra de navegación principal con el nombre del e-commerce, categorías de productos y acceso al carrito.
-- **CartWidget:** componente visual del carrito de compras con una cantidad de productos temporalmente hardcodeada.
-- **ItemListContainer:** contenedor principal que recibe y muestra un mensaje de bienvenida mediante props.
-
-## Listado dinámico de productos
-
-El catálogo obtiene los productos desde un mock local que simula una consulta asíncrona.
-
-La función `getProducts` devuelve una Promise que se resuelve luego de 2 segundos utilizando `setTimeout`.
-
-`ItemListContainer` realiza la carga de productos mediante `useEffect` y guarda los resultados en un estado utilizando `useState`.
-
-Luego, `ItemList` recorre los productos con `.map()` y renderiza un componente `Item` por cada producto utilizando su `id` como key única.
-
-## Detalle de producto
-
-Se incorporó una vista de detalle individual mediante `ItemDetailContainer` e `ItemDetail`.
-
-La función `getProductById` busca un producto por su identificador y simula una consulta asincrónica mediante una Promise y `setTimeout`.
-
-`ItemDetailContainer` administra la carga y el estado del producto, mientras que `ItemDetail` se encarga de mostrar su información completa.
-
-También se incorporó `ItemCount`, que permite seleccionar una cantidad respetando el stock disponible y evitando valores negativos.
-
-## Navegación con React Router
-
-Se incorporó `react-router-dom` para gestionar la navegación del e-commerce como una SPA.
-
-Las rutas principales son:
-
-- `/` muestra el catálogo completo.
-- `/category/:id` filtra los productos según la categoría seleccionada.
-- `/item/:id` muestra el detalle dinámico de un producto.
-- `*` muestra una página 404 para rutas inexistentes.
-
-El proyecto utiliza `NavLink` y `Link` para navegar sin recargar la página.
-
-También se incorporó un `Layout` compartido con `NavBar`, `CartWidget`, `Footer` y `Outlet`, permitiendo mantener la estructura principal visible entre rutas.
-
-## Carrito de compras
-
-Se incorporó un carrito de compras global utilizando Context API.
-
-El carrito permite:
-
-- Agregar productos y cantidades desde el detalle.
-- Sumar cantidades sin duplicar productos.
-- Eliminar productos individualmente.
-- Vaciar el carrito completo.
-- Calcular subtotales y total de compra.
-- Mostrar la cantidad total de unidades en el CartWidget.
-- Navegar a una vista dedicada mediante la ruta `/cart`.
-
-El estado global se administra mediante `CartContext` y `CartProvider`, utilizando actualizaciones inmutables con métodos como `map`, `filter`, `reduce` y spread operators.
