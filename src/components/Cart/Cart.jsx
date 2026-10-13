@@ -97,49 +97,55 @@ function Cart() {
         </div>
       ))}
 
-      <div className="checkout-form">
-        <h3>Datos de entrega</h3>
+      {user ? (
+        <div className="checkout-form">
+          <h3>Datos de entrega</h3>
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={buyer.name}
-          onChange={handleBuyerChange}
-        />
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            value={buyer.name}
+            onChange={handleBuyerChange}
+          />
 
-        <input
-          type="text"
-          name="lastname"
-          placeholder="Apellido"
-          value={buyer.lastname}
-          onChange={handleBuyerChange}
-        />
+          <input
+            type="text"
+            name="lastname"
+            placeholder="Apellido"
+            value={buyer.lastname}
+            onChange={handleBuyerChange}
+          />
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Teléfono"
-          value={buyer.phone}
-          onChange={handleBuyerChange}
-        />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Teléfono"
+            value={buyer.phone}
+            onChange={handleBuyerChange}
+          />
 
-        <input
-          type="text"
-          name="address"
-          placeholder="Dirección"
-          value={buyer.address}
-          onChange={handleBuyerChange}
-        />
+          <input
+            type="text"
+            name="address"
+            placeholder="Dirección"
+            value={buyer.address}
+            onChange={handleBuyerChange}
+          />
 
-        <input
-          type="text"
-          name="city"
-          placeholder="Ciudad"
-          value={buyer.city}
-          onChange={handleBuyerChange}
-        />
-      </div>
+          <input
+            type="text"
+            name="city"
+            placeholder="Ciudad"
+            value={buyer.city}
+            onChange={handleBuyerChange}
+          />
+        </div>
+      ) : (
+        <p>
+          Tenés que <Link to="/login">iniciar sesión</Link> para finalizar la compra.
+        </p>
+      )}
 
       <h3>Total: ${total}</h3>
 
@@ -147,9 +153,11 @@ function Cart() {
         Vaciar carrito
       </button>
 
-      <button onClick={handleCheckout}>
-        Finalizar compra
-      </button>
+      {user && (
+        <button onClick={handleCheckout}>
+          Finalizar compra
+        </button>
+      )}
     </section>
   )
 }
