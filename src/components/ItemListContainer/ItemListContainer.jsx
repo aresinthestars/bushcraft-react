@@ -6,33 +6,50 @@ import { useParams } from "react-router-dom"
 
 function ItemListContainer({ greeting }) {
   const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   const { id } = useParams()
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    const productsRef = collection(db, "products")
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true)
+      setError("")
 
-    const productsQuery = id
-      ? query(productsRef, where("category", "==", id))
-      : productsRef
+      try {
+        const productsRef = collection(db, "products")
 
-    const snapshot = await getDocs(productsQuery)
+        const productsQuery = id
+          ? query(productsRef, where("category", "==", id))
+          : productsRef
 
-    const products = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }))
+        const snapshot = await getDocs(productsQuery)
 
-    setItems(products)
-  }
+        const products = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }))
 
-  fetchProducts()
-}, [id])
+        setItems(products)
+      } catch (err) {
+        console.error("Error al cargar productos:", err)
+        setError("No se pudieron cargar los productos.")
+        setItems([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [id])
 
   return (
     <>
       <h2 className="greeting">{greeting}</h2>
-      <ItemList products={items} />
+      {loading ? (
+        <p>Cargando productos...</p>
+      ) : (
+        <ItemList products={items} />
+      )}
     </>
   )
 }
