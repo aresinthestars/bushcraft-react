@@ -218,3 +218,265 @@ body {
     font-size: 16px;
   }
 }
+
+
+/* ========================================
+   BUSHCRAFT IS LIFE! - SUNSET EDITION '79
+   ======================================== */
+
+:root {
+  --forest: #254735;
+  --forest-dark: #192c27;
+  --sunset: #d77b50;
+  --mustard: #d9ab61;
+  --blue-hour: #648399;
+  --sand: #f0dfc0;
+  --paper: #fff9ed;
+  --ink: #283b33;
+}
+
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: var(--sand);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* Navegacion */
+
+.navbar {
+  background: linear-gradient(110deg,
+      var(--forest-dark),
+      var(--forest),
+      #45645c);
+  border-bottom: 4px solid var(--mustard);
+  box-shadow: 0 4px 14px rgba(25, 44, 39, 0.18);
+}
+
+.navbar-logo {
+  font-family: Georgia, serif;
+  font-size: 26px;
+  letter-spacing: -0.5px;
+  color: var(--sand);
+}
+
+.navbar a:hover {
+  color: var(--mustard);
+}
+
+/* Cielo al atardecer */
+
+.greeting {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 65px 20px 80px;
+  border-radius: 18px;
+  color: #fff9ed;
+  font-family: Georgia, serif;
+  font-size: clamp(27px, 4vw, 40px);
+  text-shadow: 0 3px 12px rgba(25, 44, 39, 0.65);
+  box-shadow: 0 8px 24px rgba(40, 59, 51, 0.16);
+
+  background:
+    radial-gradient(ellipse 75% 48% at 8% 114%,
+      #345c51 0 57%,
+      transparent 58%),
+    radial-gradient(ellipse 70% 45% at 95% 115%,
+      #254735 0 59%,
+      transparent 60%),
+    radial-gradient(circle at 77% 48%,
+      #f6cb83 0 46px,
+      transparent 48px),
+    linear-gradient(160deg,
+      #55788f 0%,
+      #8197a1 32%,
+      #c27b70 70%,
+      #e4a361 100%);
+}
+
+/* Catalogo */
+
+.item-list {
+  max-width: 1240px;
+  margin: 0 auto;
+  gap: 26px;
+}
+
+.item-card {
+  background: var(--paper);
+  border: 1px solid #d9c7a6;
+  border-radius: 16px;
+  box-shadow: 0 5px 16px rgba(40, 59, 51, 0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(40, 59, 51, 0.2);
+}
+
+.item-card img {
+  height: 210px;
+  object-fit: contain;
+  padding: 10px;
+  background: #f4eddf;
+  border-radius: 12px;
+}
+
+.item-card h3 {
+  color: var(--forest);
+  font-family: Georgia, serif;
+  font-size: 21px;
+}
+
+.item-card a {
+  color: #365f7a;
+  font-weight: bold;
+}
+
+/* Detalle del producto */
+
+.item-detail {
+  background: var(--paper);
+  border: 1px solid #d9c7a6;
+  box-shadow: 0 8px 24px rgba(40, 59, 51, 0.15);
+}
+
+.item-detail h2 {
+  color: var(--forest);
+  font-family: Georgia, serif;
+}
+
+/* Botones */
+
+.cart-page button,
+.item-count button,
+.item-card button {
+  border: 0;
+  border-radius: 8px;
+  background: var(--sunset);
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cart-page button {
+  padding: 11px 17px;
+  margin: 6px 8px 6px 0;
+}
+
+.item-count button {
+  background: var(--forest);
+}
+
+.item-count button:last-child {
+  background: var(--sunset);
+}
+
+.cart-page button:hover:not(:disabled),
+.item-count button:hover:not(:disabled),
+.item-card button:hover:not(:disabled) {
+  background: #ad5937;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Carrito y checkout */
+
+.cart-page {
+  max-width: 960px;
+  margin: 36px auto;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid #d9c7a6;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(40, 59, 51, 0.1);
+}
+
+.cart-page h2,
+.cart-page h3 {
+  color: var(--forest);
+}
+
+.cart-item {
+  padding: 18px 20px;
+  margin: 18px 0;
+  background: #f5ecd9;
+  border-left: 5px solid var(--blue-hour);
+  border-radius: 10px;
+}
+
+.checkout-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 26px 0;
+}
+
+.checkout-form h3 {
+  grid-column: 1 / -1;
+}
+
+.checkout-form input {
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid #b8af9d;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: var(--ink);
+  font: inherit;
+}
+
+.checkout-form input:focus {
+  outline: 2px solid var(--blue-hour);
+  outline-offset: 1px;
+}
+
+.checkout-error {
+  color: #992f2f;
+  font-weight: bold;
+}
+
+/* Footer */
+
+.footer {
+  background: linear-gradient(100deg,
+      var(--forest-dark),
+      #2b4b47,
+      #49687b);
+  border-top: 4px solid var(--mustard);
+  color: var(--sand);
+}
+
+/* Ajustes para celulares */
+
+@media (max-width: 700px) {
+  .greeting {
+    margin: 18px 12px 0;
+    padding: 50px 18px 65px;
+    border-radius: 12px;
+  }
+
+  .navbar-logo {
+    font-size: 22px;
+  }
+
+  .checkout-form {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-page {
+    margin: 16px;
+    padding: 20px 16px;
+  }
+
+  .item-card img {
+    height: 190px;
+  }
+}
