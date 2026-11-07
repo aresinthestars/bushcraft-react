@@ -47,6 +47,14 @@ function ItemListContainer({ greeting }) {
       <h2 className="greeting">{greeting}</h2>
       {loading ? (
         <p>Cargando productos...</p>
+      ) : error ? (
+        <p role="alert">{error}</p>
+      ) : items.length === 0 ? (
+        <p>
+          {id
+            ? "No hay productos en esta categoría."
+            : "No hay productos disponibles."}
+        </p>
       ) : (
         <ItemList products={items} />
       )}

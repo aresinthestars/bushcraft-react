@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { doc, getDoc } from "firebase/firestore"
@@ -6,26 +7,45 @@ import ItemDetail from "../ItemDetail/ItemDetail"
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
   const { id } = useParams()
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const productRef = doc(db, "products", id)
-      const productSnapshot = await getDoc(productRef)
+      setLoading(true)
+      setError("")
+      setProduct(null)
 
-      if (productSnapshot.exists()) {
-        setProduct({
-          id: productSnapshot.id,
-          ...productSnapshot.data()
-        })
+      try {
+        const productRef = doc(db, "products", id)
+        const productSnapshot = await getDoc(productRef)
+
+        if (productSnapshot.exists()) {
+          setProduct({
+            id: productSnapshot.id,
+            ...productSnapshot.data()
+          })
+        } else {
+          setError("El producto solicitado no existe.")
+        }
+      } catch (err) {
+        console.error("Error al cargar producto:", err)
+        setError("No se pudo cargar el producto.")
+      } finally {
+        setLoading(false)
       }
     }
 
     fetchProduct()
   }, [id])
 
-  if (!product) {
+  if (loading) {
     return <p>Cargando producto...</p>
+  }
+
+  if (error) {
+    return <p role="alert">{error}</p>
   }
 
   return <ItemDetail product={product} />
