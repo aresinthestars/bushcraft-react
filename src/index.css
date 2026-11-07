@@ -122,6 +122,13 @@ body {
   cursor: pointer;
 }
 
+.item-count button:last-child {
+  width: auto;
+  min-width: 130px;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
 .item-count span {
   min-width: 24px;
   text-align: center;
@@ -143,4 +150,71 @@ body {
   margin-top: 40px;
   background-color: #182418;
   color: white;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .navbar-logo {
+    width: 100%;
+    font-size: 22px;
+  }
+
+  .navbar-categories {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 16px;
+    font-size: 14px;
+  }
+
+  .navbar-auth {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .cart-widget {
+    margin-left: auto;
+  }
+
+  .item-detail {
+    flex-direction: column;
+    margin: 16px;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .item-detail img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cart-page {
+    padding: 20px 16px;
+  }
+
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .checkout-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 16px;
+  }
 }
