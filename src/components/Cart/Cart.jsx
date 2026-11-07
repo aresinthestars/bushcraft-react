@@ -17,7 +17,8 @@ function Cart() {
     address: "",
     city: ""
   })
-
+  const [processing, setProcessing] = useState(false)
+  const [checkoutError, setCheckoutError] = useState("")
   const handleBuyerChange = (event) => {
     const { name, value } = event.target
 
@@ -74,10 +75,20 @@ function Cart() {
       date: serverTimestamp()
     }
 
-    const orderRef = await addDoc(collection(db, "orders"), order)
+    setProcessing(true)
+    setCheckoutError("")
 
-    alert(`Compra realizada. ID de orden: ${orderRef.id}`)
-    clear()
+    try {
+      const orderRef = await addDoc(collection(db, "orders"), order)
+
+      alert(`Compra realizada. ID de orden: ${orderRef.id}`)
+      clear()
+    } catch (err) {
+      console.error("Error al crear la orden:", err)
+      setCheckoutError("No se pudo completar la compra. Intentá nuevamente.")
+    } finally {
+      setProcessing(false)
+    }
   }
 
   return (
@@ -149,13 +160,19 @@ function Cart() {
 
       <h3>Total: ${total}</h3>
 
+      {checkoutError && (
+        <p role="alert" className="checkout-error">
+          {checkoutError}
+        </p>
+      )}
+
       <button onClick={clear}>
         Vaciar carrito
       </button>
 
       {user && (
-        <button onClick={handleCheckout}>
-          Finalizar compra
+        <button onClick={handleCheckout} disabled={processing}>
+          {processing ? "Procesando compra..." : "Finalizar compra"}
         </button>
       )}
     </section>
