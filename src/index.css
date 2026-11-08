@@ -480,3 +480,20 @@ button:disabled {
     height: 190px;
   }
 }
+
+/* Bosque vectorial - Sunset Edition '79 */
+
+.greeting {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.greeting::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/forest-trees.svg") center bottom / 100% 135px no-repeat;
+  pointer-events: none;
+  z-index: -1;
+}

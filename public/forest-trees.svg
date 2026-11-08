@@ -1,0 +1,42 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 135"
+     preserveAspectRatio="none">
+
+  <defs>
+    <path id="pine"
+      d="M0 -110
+         L-13 -80 L-7 -80
+         L-26 -48 L-17 -48
+         L-38 -14 L-7 -14
+         L-7 0 L7 0
+         L7 -14 L38 -14
+         L17 -48 L26 -48
+         L7 -80 L13 -80 Z"/>
+  </defs>
+
+  <!-- Bosque lejano: azul verdoso y transparente -->
+  <use href="#pine" transform="translate(190 133) scale(.65)"
+       fill="#547f82" opacity=".42"/>
+  <use href="#pine" transform="translate(267 133) scale(.44)"
+       fill="#698e85" opacity=".32"/>
+  <use href="#pine" transform="translate(951 133) scale(.51)"
+       fill="#547f82" opacity=".40"/>
+  <use href="#pine" transform="translate(1070 133) scale(.62)"
+       fill="#698e85" opacity=".38"/>
+
+  <!-- Bosque intermedio -->
+  <use href="#pine" transform="translate(135 133) scale(.80)"
+       fill="#37644d" opacity=".84"/>
+  <use href="#pine" transform="translate(1030 133) scale(.83)"
+       fill="#315b48" opacity=".88"/>
+  <use href="#pine" transform="translate(1145 133) scale(.50)"
+       fill="#416c56" opacity=".75"/>
+
+  <!-- Primer plano: pinos oscuros -->
+  <use href="#pine" transform="translate(63 133) scale(1.12)"
+       fill="#193f32"/>
+  <use href="#pine" transform="translate(1165 133) scale(.95)"
+       fill="#204735"/>
+
+</svg>
